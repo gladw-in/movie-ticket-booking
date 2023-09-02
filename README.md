@@ -61,7 +61,7 @@ Movie Ticket Booking System is to manage the details of Shows, Booking, Payment,
 
 ## FAQ
 #### Which python version?
-Use python 3.11 and higher. Download from [here](https://www.python.org/)
+Use python 3.11 or higher. Download from [here](https://www.python.org/)
 
 #### Which mysql version?
-Use mysql 8.0.31 and higher. Download from [here](https://dev.mysql.com/downloads/mysql/)
+Use mysql 8.0.31 or higher. Download from [here](https://dev.mysql.com/downloads/mysql/)
