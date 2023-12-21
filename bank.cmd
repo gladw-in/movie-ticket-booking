@@ -1,2 +1,2 @@
-cd files
-start banking.py
+@echo off
+python -m movie_booking.bank

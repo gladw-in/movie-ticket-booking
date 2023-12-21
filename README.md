@@ -1,67 +1,106 @@
+# Movie Ticket Booking App in Python
 
-# Movie Ticket Booking
+A desktop **movie ticket booking system** built with **Python and Tkinter**. Customers sign up, pick a movie and a theatre (INOX or PVR), choose a showtime and seats, add food and drinks, pay from a built-in **bank simulator**, and get their tickets with a QR code. Accounts are stored in **MySQL** (or MariaDB) with hashed passwords, and the bank uses **SQLite**.
 
-![](https://i.ibb.co/CbD1gPQ/1.png)
+**Booking flow:** sign up / log in → pick a movie → pick a theatre (INOX or PVR) → pick a showtime and seats → optionally add food and drinks → pay from a bank account → get your tickets.
 
-Movie Ticket Booking System is to manage the details of Shows, Booking, Payment, Movie and Customer. It manages all the information about Shows, Seats, Customers and Shows. The project is totally built at the administrative end and thus only the administrator is guaranteed access. The purpose of the project is to build an application program to reduce the manual work for managing the Shows, Booking, Seats and Payment. It tracks all the details about the Payment, Movie and Customer. 
-## Required Modules
-➔	mysql.connector
-```bash
-  pip install mysql-connector-python
-```
-➔	pandas
-```bash
-  pip install pandas
-```
-➔	pillow(PIL)
-```bash
-  pip install Pillow
-```
+## Contents
+
+- [Features](#features)
+- [Screenshots](#screenshots)
+- [Setup and installation](#setup-and-installation)
+- [Bank simulator and database tools](#bank-simulator-and-database-tools)
+- [Running the tests](#running-the-tests)
+
+## Features
+
+- Sign up, log in and reset a forgotten password, with passwords stored as salted PBKDF2 hashes
+- Browse movies with posters and choose between INOX and PVR theatres
+- Pick a showtime and select seats on a seat map, with different seat layouts and prices per theatre
+- Order food and drinks from a menu with sizes, and review everything in a cart
+- Pay from a simulated bank account and receive tickets with a QR code
+- Built-in bank simulator: register, deposit, withdraw, transaction history, personal info and an admin view
+- Automated tests with pytest, including headless GUI walkthroughs
+
 ## Screenshots
 
-![](https://i.postimg.cc/QC01C6qy/image-0.png)
+### Account: log in, sign up and forgot password
 
-![](https://i.postimg.cc/sfcpTXR4/image-1.png)
+| Log in | Sign up | Forgot password |
+|---|---|---|
+| ![Movie booking app log in screen](docs/screenshots/01-login.png) | ![Movie booking app sign up screen](docs/screenshots/02-signup.png) | ![Forgot password screen for resetting an account password](docs/screenshots/03-forgot-password.png) |
 
-![](https://i.postimg.cc/xCPbpsB1/image-2.png)
+### Pick a movie and a theatre
 
-![](https://i.postimg.cc/xT1Lh2fD/image-3.png)
+| Movies | Next movie | Theatre |
+|---|---|---|
+| ![Movie selection screen with poster and book button](docs/screenshots/04-movies.png) | ![Next movie in the movie carousel](docs/screenshots/05-movies-next.png) | ![Theatre selection screen with INOX and PVR](docs/screenshots/06-theatre.png) |
 
-![](https://i.postimg.cc/C10qNyP2/image-4.png)
+### Showtime and seat selection
 
-![](https://i.postimg.cc/m2p7G5kc/image-5.png)
+![Seat selection screen for an INOX theatre with showtimes and seat map](docs/screenshots/07-seats-inox.png)
 
-![](https://i.postimg.cc/GmBG3xTX/image-6.png)
+![Seat selection screen for a PVR theatre with showtimes and seat map](docs/screenshots/08-seats-pvr.png)
 
-![](https://i.postimg.cc/6pDR84dt/image-7.png)
+### Food and drinks
 
-![](https://i.postimg.cc/yNcRc6P9/image-8.png)
+| Add on food? | Food menu | Snacks |
+|---|---|---|
+| ![Prompt asking whether to add food and drinks](docs/screenshots/09-food-prompt.png) | ![Food and drinks menu with categories](docs/screenshots/10-food-menu.png) | ![Desi snacks list with prices](docs/screenshots/11-food-snacks.png) |
 
-![](https://i.postimg.cc/cC4tpRNM/image-9.png)
+| Drink sizes | Cart |
+|---|---|
+| ![Soft drinks with small, medium and big sizes](docs/screenshots/12-food-sizes.png) | ![Food cart with quantity buttons and total](docs/screenshots/13-cart.png) |
 
-![](https://i.postimg.cc/tJSnpsq0/image-10.png)
+### Payment and tickets
 
-![](https://i.postimg.cc/RVhnGLdv/image-11.png)
+| Payment | Tickets |
+|---|---|
+| ![Payment screen with order summary, invoice and bank account login](docs/screenshots/14-checkout.png) | ![Booked movie tickets with QR codes after successful payment](docs/screenshots/15-tickets.png) |
 
-![](https://i.postimg.cc/dtfZfZNr/image-12.png)
+### Bank simulator
 
-![](https://i.postimg.cc/sgZGCfb8/image-13.png)
+| Home | Register | Log in |
+|---|---|---|
+| ![Bank simulator home window](docs/screenshots/16-bank-home.png) | ![Bank simulator register account dialog](docs/screenshots/17-bank-register.png) | ![Bank simulator log in dialog](docs/screenshots/18-bank-login.png) |
 
-## Run Locally
+| Account menu | Deposit | All accounts (admin) |
+|---|---|---|
+| ![Bank account menu with balance, deposit, withdraw and transactions](docs/screenshots/19-bank-account.png) | ![Bank deposit dialog](docs/screenshots/20-bank-deposit.png) | ![Admin list of all bank accounts with balances](docs/screenshots/21-bank-all-accounts.png) |
 
-1. Clone the project
+## Setup and installation
 
-2. Go to the project directory
+Requires Python 3.10+ (with Tkinter) and a running MySQL or MariaDB server.
 
-3. Run `bank.cmd` for creating a bank account and depositing money.
+```bash
+pip install -r requirements.txt
+python -m movie_booking          # or double-click login.cmd on Windows
+```
 
-4. Run `db.cmd` to check if the database and table exists, if not add then using `db.cmd`
+On first run you are asked for your MySQL password (and whether to remember it). The database and table are created automatically.
 
-5. Then finally run `login.cmd` and enjoy.
+| Setting | Environment variable | Default |
+|---|---|---|
+| Host | `MTB_DB_HOST` | `localhost` |
+| Port | `MTB_DB_PORT` | `3306` |
+| User | `MTB_DB_USER` | `root` |
+| Password | `MTB_DB_PASSWORD` | *(asked at start-up)* |
+| Database | `MTB_DB_NAME` | `movie_ticketbooking` |
 
-## FAQ
-#### Which python version?
-Use python 3.11. Download from [here](https://www.python.org/downloads/release/python-3110/)
+## Bank simulator and database tools
 
-#### Which mysql version?
-Use mysql 8.0.31 or higher. Download from [here](https://dev.mysql.com/downloads/mysql/)
+| Command | What it does |
+|---|---|
+| `python -m movie_booking.bank` | Bank simulator: register, deposit, withdraw, history, personal info, admin view |
+| `python -m movie_booking.dbtool` | MySQL maintenance menu (create/drop database and table, insert demo users) |
+| `python -m movie_booking.bank` | Import accounts from the old file-based bank |
+
+You need a bank account to pay for a booking: register one in the bank app and deposit some money first.
+
+## Running the tests
+
+```bash
+pip install -r requirements-dev.txt
+pytest                      # logic tests; GUI tests are skipped without a display
+xvfb-run -a pytest          # include the GUI tests on a headless Linux box
+```

@@ -1,2 +1,3 @@
-cd files
-start users.py
+@echo off
+python -m movie_booking.dbtool
+pause

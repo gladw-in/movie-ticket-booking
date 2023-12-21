@@ -1,2 +1,2 @@
-cd files
-start login.py
+@echo off
+python -m movie_booking

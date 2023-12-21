@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "movie-ticket-booking"
+version = "2.0.0"
+description = "Tkinter movie ticket booking app with a MySQL account store and a bank simulator."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = ["mysql-connector-python>=8.0", "Pillow>=9.0"]
+
+[project.optional-dependencies]
+dev = ["pytest>=7"]
+
+[project.scripts]
+movie-booking = "movie_booking.__main__:main"
+movie-booking-bank = "movie_booking.bank.app:main"
+movie-booking-db = "movie_booking.dbtool:main"
+
+[tool.setuptools.packages.find]
+include = ["movie_booking*"]
+
+[tool.setuptools.package-data]
+movie_booking = ["assets/*", "assets/img/*", "assets/posters/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
